@@ -9,11 +9,13 @@ class DatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
+        $this->call([CategoryTableSeeder::class]);
+        $this->call([MetalTableSeeder::class]);
+        $this->call([GemstoneTableSeeder::class]);
+        $this->call([ProductTableSeeder::class]);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

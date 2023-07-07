@@ -101,7 +101,7 @@ class ProductApiController extends Controller
             })
             ->when($request->category, function ($query) use ($request) {
                 $query->whereHas('category', function ($result) use ($request) {
-                    $result->where('id', $request->category);
+                    $result->where('slug', $request->category);
                 });
             })
             ->orderBy($orderBy, $orderDirection)

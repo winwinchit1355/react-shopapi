@@ -14,7 +14,7 @@ class CategoryTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $categories=[
+        $categories = [
             [
                 'uuid' => Str::uuid(),
                 'name' => '(Ring)လက်စွပ်',
@@ -43,8 +43,9 @@ class CategoryTableSeeder extends Seeder
                 'uuid' => Str::uuid(),
                 'name' => '(Anklet)ခြေကျင်း',
             ],
-            ];
-
-            Category::insert($categories);
+        ];
+        foreach ($categories as $category) {
+            Category::create($category);
+        }
     }
 }

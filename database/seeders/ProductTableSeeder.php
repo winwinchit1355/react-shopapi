@@ -24,7 +24,6 @@ class ProductTableSeeder extends Seeder
                 'desc' => 'စိန်ပွင့်လေးလို တလက်လက်တောက်ပနေပြီး လက်တစ်ခါ လှုပ်ရှားလိုက်တိုင်း ပေါ်လွင်လှပစေမဲ့ စက်ဖြတ်လက်စွပ်လေးပါ။18K White Goldဖြင့်ပြုလုပ်ထားပါတယ်။',
                 'quantity' => 5,
                 'price' => '175000',
-                'slug' => 'glitterring-ring',
                 'is_feature' => 'inactive',
                 'feature_image' => '/products/1.jpg'
             ],
@@ -47,7 +46,6 @@ class ProductTableSeeder extends Seeder
                 (ပို့ခ အခမဲ့)',
                 'quantity' => 5,
                 'price' => '4375000',
-                'slug' => 'diamond-ring',
                 'is_feature' => 'inactive',
                 'feature_image' => '/products/2.jpg'
             ],
@@ -62,7 +60,6 @@ class ProductTableSeeder extends Seeder
                 ပြန်ရောင်းလျှင် လက်ခ နုတ်ပြီးအခေါက်ပေါက်စျေးအတိုင်းပြန်ဝယ်ပေးပါသည်။',
                 'quantity' => 5,
                 'price' => '975000',
-                'slug' => 'gold-ring',
                 'is_feature' => 'active',
                 'feature_image' => '/products/3.jpg'
             ],
@@ -81,7 +78,6 @@ class ProductTableSeeder extends Seeder
                 အရောင်း -17%',
                 'quantity' => 5,
                 'price' => '205000',
-                'slug' => 'maung-ring',
                 'is_feature' => 'inactive',
                 'feature_image' => '/products/4.jpg'
             ],
@@ -100,7 +96,6 @@ class ProductTableSeeder extends Seeder
                 'quantity' => 5,
                 'price' => '250000',
                 'is_feature' => 'active',
-                'slug' => 'white-ring',
                 'is_feature' => 'inactive',
                 'feature_image' => '/products/5.jpg'
             ],
@@ -118,7 +113,6 @@ class ProductTableSeeder extends Seeder
                 အရောင်း -17%",
                 'quantity' => 5,
                 'price' => '250000',
-                'slug' => 'white-ring',
                 'is_feature' => 'active',
                 'feature_image' => '/products/6.jpg'
             ],
@@ -136,7 +130,6 @@ class ProductTableSeeder extends Seeder
                 အရောင်း -17%",
                 'quantity' => 5,
                 'price' => '250000',
-                'slug' => 'white-ring',
                 'is_feature' => 'inactive',
                 'feature_image' => '/products/7.jpg'
             ],
@@ -154,7 +147,6 @@ class ProductTableSeeder extends Seeder
                 အရောင်း -17%",
                 'quantity' => 5,
                 'price' => '250000',
-                'slug' => 'white-ring',
                 'is_feature' => 'inactive',
                 'feature_image' => '/products/8.jpg'
             ],
@@ -172,7 +164,6 @@ class ProductTableSeeder extends Seeder
                 အရောင်း -17%",
                 'quantity' => 5,
                 'price' => '250000',
-                'slug' => 'white-ring',
                 'is_feature' => 'inactive',
                 'feature_image' => '/products/9.jpg'
             ],
@@ -190,7 +181,6 @@ class ProductTableSeeder extends Seeder
                 အရောင်း -17%",
                 'quantity' => 5,
                 'price' => '250000',
-                'slug' => 'white-ring',
                 'is_feature' => 'inactive',
                 'feature_image' => '/products/10.jpg'
             ],
@@ -208,7 +198,6 @@ class ProductTableSeeder extends Seeder
                 အရောင်း -17%",
                 'quantity' => 5,
                 'price' => '250000',
-                'slug' => 'white-ring',
                 'is_feature' => 'inactive',
                 'feature_image' => '/products/11.jpg'
             ],
@@ -226,12 +215,13 @@ class ProductTableSeeder extends Seeder
                 အရောင်း -17%",
                 'quantity' => 5,
                 'price' => '250000',
-                'slug' => 'white-ring',
                 'is_feature' => 'inactive',
                 'feature_image' => '/products/12.jpg'
             ],
         ];
 
-        Product::insert($products);
+        foreach ($products as $product) {
+            Product::create($product);
+        }
     }
 }

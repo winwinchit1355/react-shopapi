@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('uuid')->unique();
             $table->string('name');
+            $table->string('slug')->nullable();
             $table->string('meta_keyword')->nullable();
             $table->text('meta_description')->nullable();
             $table->timestamps();

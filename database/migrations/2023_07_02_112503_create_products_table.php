@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->string('status')->default('active')->comment('active,inactive');
             $table->string('is_feature')->default('inactive')->comment('active,inactive');
+            $table->string('SKU')->nullable();
             $table->string('meta_keyword')->nullable();
             $table->text('meta_description')->nullable();
             $table->foreignId('created_by')->nullable()->constrained('users');

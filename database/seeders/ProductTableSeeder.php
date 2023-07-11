@@ -25,7 +25,8 @@ class ProductTableSeeder extends Seeder
                 'quantity' => 5,
                 'price' => '175000',
                 'is_feature' => 'inactive',
-                'feature_image' => '/products/1.jpg'
+                'feature_image' => '/products/1.jpg',
+                'SKU' => '00001'
             ],
             [
                 'uuid' => Str::uuid(),
@@ -47,7 +48,8 @@ class ProductTableSeeder extends Seeder
                 'quantity' => 5,
                 'price' => '4375000',
                 'is_feature' => 'inactive',
-                'feature_image' => '/products/2.jpg'
+                'feature_image' => '/products/2.jpg',
+                'SKU' => '00002'
             ],
             [
                 'uuid' => Str::uuid(),
@@ -61,7 +63,8 @@ class ProductTableSeeder extends Seeder
                 'quantity' => 5,
                 'price' => '975000',
                 'is_feature' => 'active',
-                'feature_image' => '/products/3.jpg'
+                'feature_image' => '/products/3.jpg',
+                'SKU' => '00003'
             ],
             [
                 'uuid' => Str::uuid(),
@@ -79,7 +82,8 @@ class ProductTableSeeder extends Seeder
                 'quantity' => 5,
                 'price' => '205000',
                 'is_feature' => 'inactive',
-                'feature_image' => '/products/4.jpg'
+                'feature_image' => '/products/4.jpg',
+                'SKU' => '00005'
             ],
             [
                 'uuid' => Str::uuid(),
@@ -97,7 +101,8 @@ class ProductTableSeeder extends Seeder
                 'price' => '250000',
                 'is_feature' => 'active',
                 'is_feature' => 'inactive',
-                'feature_image' => '/products/5.jpg'
+                'feature_image' => '/products/5.jpg',
+                'SKU' => '00006'
             ],
             [
                 'uuid' => Str::uuid(),
@@ -114,7 +119,8 @@ class ProductTableSeeder extends Seeder
                 'quantity' => 5,
                 'price' => '250000',
                 'is_feature' => 'active',
-                'feature_image' => '/products/6.jpg'
+                'feature_image' => '/products/6.jpg',
+                'SKU' => '00007'
             ],
             [
                 'uuid' => Str::uuid(),
@@ -131,7 +137,8 @@ class ProductTableSeeder extends Seeder
                 'quantity' => 5,
                 'price' => '250000',
                 'is_feature' => 'inactive',
-                'feature_image' => '/products/7.jpg'
+                'feature_image' => '/products/7.jpg',
+                'SKU' => '00007'
             ],
             [
                 'uuid' => Str::uuid(),
@@ -148,7 +155,8 @@ class ProductTableSeeder extends Seeder
                 'quantity' => 5,
                 'price' => '250000',
                 'is_feature' => 'inactive',
-                'feature_image' => '/products/8.jpg'
+                'feature_image' => '/products/8.jpg',
+                'SKU' => '00008'
             ],
             [
                 'uuid' => Str::uuid(),
@@ -165,7 +173,8 @@ class ProductTableSeeder extends Seeder
                 'quantity' => 5,
                 'price' => '250000',
                 'is_feature' => 'inactive',
-                'feature_image' => '/products/9.jpg'
+                'feature_image' => '/products/9.jpg',
+                'SKU' => '00008'
             ],
             [
                 'uuid' => Str::uuid(),
@@ -182,7 +191,8 @@ class ProductTableSeeder extends Seeder
                 'quantity' => 5,
                 'price' => '250000',
                 'is_feature' => 'inactive',
-                'feature_image' => '/products/10.jpg'
+                'feature_image' => '/products/10.jpg',
+                'SKU' => '00009'
             ],
             [
                 'uuid' => Str::uuid(),
@@ -199,7 +209,8 @@ class ProductTableSeeder extends Seeder
                 'quantity' => 5,
                 'price' => '250000',
                 'is_feature' => 'inactive',
-                'feature_image' => '/products/11.jpg'
+                'feature_image' => '/products/11.jpg',
+                'SKU' => '000010'
             ],
             [
                 'uuid' => Str::uuid(),
@@ -216,7 +227,8 @@ class ProductTableSeeder extends Seeder
                 'quantity' => 5,
                 'price' => '250000',
                 'is_feature' => 'inactive',
-                'feature_image' => '/products/12.jpg'
+                'feature_image' => '/products/12.jpg',
+                'SKU' => '000011'
             ],
         ];
 

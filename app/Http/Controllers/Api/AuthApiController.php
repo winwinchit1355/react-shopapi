@@ -10,10 +10,17 @@ use App\Responses\ResponseFormat;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Passport\RefreshTokenRepository;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class AuthApiController extends Controller
 {
-    use ResponseFormat;
+    use ResponseFormat , AuthenticatesUsers;
+
+    public function __construct()
+    {
+        $this->middleware('guest:customer')->except('logout');
+    }
+
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -25,7 +32,7 @@ class AuthApiController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
+            return $this->apiValidationErrorResponse($request->all(),'Validation Fail!',$validator->errors());
         }
 
         $customer = new Customer();
@@ -48,15 +55,15 @@ class AuthApiController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
+            return $this->apiValidationErrorResponse($request->all(),'Validation Fail!',$validator->errors());
         }
 
-        if (!auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+        if (!auth()->guard('customer')->attempt($credentials)) {
+            return $this->apiErrorResponse($request->all(),'Unauthorized!',$validator->errors());
         }
 
         /* ------------ Create a new personal access token for the user. ------------ */
-        $tokenData = auth()->user()->createToken('MyApiToken');
+        $tokenData = auth()->guard('customer')->user()->createToken('MyApiToken');
         $token = $tokenData->accessToken;
         $expiration = $tokenData->token->expires_at->diffInSeconds(Carbon::now());
 

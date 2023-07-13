@@ -5,9 +5,10 @@ namespace App\Models;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Customer extends Model
+class Customer extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
     const IMAGE_PATH = 'frontend/profileimage/';

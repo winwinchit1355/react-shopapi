@@ -24,9 +24,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::post('/register', [AuthApiController::class, 'register']);
 Route::post('/login', [AuthApiController::class, 'login']);
+
 Route::resource('/categories', CategoryApiController::class);
 Route::resource('/metals', MetalApiController::class);
 Route::resource('/gemstones', GemstoneApiController::class);
 Route::resource('/products', ProductApiController::class);
 Route::get('/shop', [ProductApiController::class, "shop"]);
 Route::get('/product-detail/{slug}', [ProductApiController::class, "productDetail"]);
+Route::middleware('auth:customer_api')->group(function () {
+
+    Route::get('getuser', [AuthApiController::class, 'getUser']);
+    Route::post('/logout', [AuthApiController::class, 'logout']);
+});

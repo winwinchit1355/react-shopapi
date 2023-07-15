@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Responses\ResponseFormat;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Passport\RefreshTokenRepository;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -75,16 +76,29 @@ class AuthApiController extends Controller
     }
     public function logout()
     {
-        $token = auth()->user()->token();
+        $customer = Auth::guard('customer_api')->user();
 
-        /* --------------------------- revoke access token -------------------------- */
-        $token->revoke();
-        $token->delete();
+        if ($customer) {
+            $customer->token()->delete(); // Delete all access tokens associated with the customer
+            return response()->json(['message' => 'Logged out successfully']);
+        } else {
+            return response()->json(['message' => 'Customer not found'], 404);
+        }
 
-        /* -------------------------- revoke refresh token -------------------------- */
-        $refreshTokenRepository = app(RefreshTokenRepository::class);
-        $refreshTokenRepository->revokeRefreshTokensByAccessTokenId($token->id);
+        // $token = auth()->guard('customer')->user()->token();
 
-        return response()->json(['message' => 'Logged out successfully']);
+        // /* --------------------------- revoke access token -------------------------- */
+        // $token->revoke();
+        // $token->delete();
+
+        // /* -------------------------- revoke refresh token -------------------------- */
+        // $refreshTokenRepository = app(RefreshTokenRepository::class);
+        // $refreshTokenRepository->revokeRefreshTokensByAccessTokenId($token->id);
+
+        // return response()->json(['message' => 'Logged out successfully']);
+    }
+    public function getUser()
+    {
+        return response()->json(Auth::guard('customer_api')->user());
     }
 }

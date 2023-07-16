@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 class WishListItemApiController extends Controller
 {
     use ResponseFormat;
-    public function getWishlistitems(Request $request)
+    public function index(Request $request)
     {
         $customer_id = auth()->guard('customer')->id();
         $wishlists=WishlistItem::where('customer_id',$customer_id)->get();

@@ -12,11 +12,17 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 class CartItemApiController extends Controller
 {
     use ResponseFormat, AuthenticatesUsers;
-    public function getCartitems(Request $request)
+    public function index(Request $request)
     {
-        $customer_id = auth()->guard('customer')->id();
+        $customer_id = auth()->guard('customer_api')->id();
         $cartitems=CartItem::where('customer_id',$customer_id)->get();
         return  $this->apiSuccessResponse($cartitems,'Successfully',200);
+    }
+    public function getCartItemCount(Request $request)
+    {
+        $customer_id = auth()->guard('customer_api')->id();
+        $count=CartItem::where('customer_id',$customer_id)->count();
+        return  $this->apiSuccessResponse($count,'Successfully',200);
     }
     public function addToCart(Request $request)
     {

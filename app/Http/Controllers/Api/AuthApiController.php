@@ -27,7 +27,7 @@ class AuthApiController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'phone' => 'required',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email|unique:customers',
             'password' => 'required',
             'address' => 'required',
         ]);
@@ -79,7 +79,8 @@ class AuthApiController extends Controller
         $customer = Auth::guard('customer_api')->user();
 
         if ($customer) {
-            $customer->token()->delete(); // Delete all access tokens associated with the customer
+            $customer->token()->revoke();
+            $customer->token()->delete();
             return response()->json(['message' => 'Logged out successfully']);
         } else {
             return response()->json(['message' => 'Customer not found'], 404);

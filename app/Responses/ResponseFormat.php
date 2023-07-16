@@ -13,7 +13,7 @@ trait ResponseFormat
             'message' => $message,
             'success' => true,
             'code' => $statusCode,
-        ], $statusCode);;
+        ], $statusCode);
     }
 
     public function apiErrorResponse($data = null, $message, $error, $statusCode = 500)

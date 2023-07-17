@@ -69,6 +69,7 @@ class AuthApiController extends Controller
         $expiration = $tokenData->token->expires_at->diffInSeconds(Carbon::now());
 
         return response()->json([
+            'message'=>'Successfully Login.',
             'access_token' => $token,
             'token_type' => 'Bearer',
             'expires_in' => $expiration

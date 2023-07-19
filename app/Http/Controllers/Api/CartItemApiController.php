@@ -15,9 +15,7 @@ class CartItemApiController extends Controller
     use ResponseFormat, AuthenticatesUsers;
     public function index(Request $request)
     {
-        $customer_id = auth()->guard('customer_api')->id();
-        $cartitems=CartItem::with(['product','product.category','product.metal','product.gemstone'])
-            ->where('customer_id',$customer_id)->get();
+        $cartitems=$this->getAllCartItems();
         return  $this->apiSuccessResponse($cartitems,'Successfully',200);
     }
     public function getCartItemCount(Request $request)
@@ -54,31 +52,39 @@ class CartItemApiController extends Controller
             $cart->save();
 
         }
-        $cartitems=CartItem::where('customer_id',$customer_id)->get();
+        $cartitems=$this->getAllCartItems();
         return  $this->apiSuccessResponse($cartitems,'Successfully add to cart',200);
 
     }
     public function removeFromCart(Request $request)
     {
         $cartitem = CartItem::where('uuid', $request->id)->delete();
-        return  $this->apiSuccessResponse($cartitem,'Successfully remove item',200);
+        $cartitems=$this->getAllCartItems();
+        return  $this->apiSuccessResponse($cartitems,'Successfully remove item',200);
     }
     public function clearCart()
     {
         $customer_id = Auth::guard('customer_api')->id();
         $cartitem = CartItem::where('customer_id', $customer_id)->delete();
-        return  $this->apiSuccessResponse($cartitem,'Successfully remove all items',200);
+        $cartitems=$this->getAllCartItems();
+        return  $this->apiSuccessResponse($cartitems,'Successfully remove all items',200);
     }
     public function updateCartList(Request $request)
     {
-        if ($request->id == null) {
-            return $this->apiErrorResponse($request->id, 'No item!','No item!');
-        }
-        foreach ($request->id as $key => $id) {
-            $cartitem = CartItem::where('uuid', $id)->first();
-            $cartitem->quantity = $request->quantity[$key];
+        // return  $this->apiSuccessResponse($request->quantity,'Successfully updated',200);
+        foreach ($request->quantity as  $data) {
+            $cartitem = CartItem::where('uuid', $data['id'])->first();
+            $cartitem->quantity = $data['quantity'];
             $cartitem->update();
         }
-        return  $this->apiSuccessResponse($cartitem,'Successfully updated',200);
+        $cartitems=$this->getAllCartItems();
+        return  $this->apiSuccessResponse($cartitems,'Successfully updated',200);
+    }
+    public function getAllCartItems()
+    {
+        $customer_id = auth()->guard('customer_api')->id();
+        $cartitems=CartItem::with(['product','product.category','product.metal','product.gemstone'])
+            ->where('customer_id',$customer_id)->get();
+        return $cartitems;
     }
 }

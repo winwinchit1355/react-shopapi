@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthApiController;
 use App\Http\Controllers\Api\MetalApiController;
+use App\Http\Controllers\Api\OrderApiController;
 use App\Http\Controllers\Api\ProductApiController;
 use App\Http\Controllers\Api\CartItemApiController;
 use App\Http\Controllers\Api\CategoryApiController;
@@ -40,6 +41,9 @@ Route::middleware('auth:customer_api')->group(function () {
     Route::post('/remove-cart', [CartItemApiController::class, 'removeFromCart']);
     Route::post('/clear-cart', [CartItemApiController::class, 'clearCart']);
     Route::post('/update-cart', [CartItemApiController::class, 'updateCartList']);
+
+    Route::post('/complete-order', [OrderApiController::class, 'completeOrder']);
+    Route::get('/orderlist', [OrderApiController::class, 'index']);
 
     Route::resource('/wishlists', WishListItemApiController::class);
     // Route::get('/get-wishlistitems', [WishListItemApiController::class, 'getWishlistitems'])->name('get-wishlistitems');

@@ -76,7 +76,7 @@ class ProductApiController extends Controller
 
     public function productDetail(Request $request, $slug)
     {
-        $product = Product::with(['images', 'category'])
+        $product = Product::with(['images', 'category','metal','gemstone'])
             ->where('slug', $slug)
             ->first();
         return  $this->apiSuccessResponse($product, 'Successfully', 200);

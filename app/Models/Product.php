@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\Metal;
-use App\Models\Product;
 use App\Models\Category;
 use App\Models\Gemstone;
 use App\Models\OrderItem;
@@ -87,6 +86,7 @@ class Product extends Model
     {
         return $this->hasMany(OrderItem::class,'product_id');
     }
+
     /**
      * Return the sluggable configuration array for this model.
      *

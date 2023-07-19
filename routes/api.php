@@ -35,8 +35,11 @@ Route::get('/shop', [ProductApiController::class, "shop"]);
 Route::get('/product-detail/{slug}', [ProductApiController::class, "productDetail"]);
 Route::middleware('auth:customer_api')->group(function () {
     Route::resource('/cartitems', CartItemApiController::class);
-    Route::get('/get-cartitem-count', [CartItemApiController::class, 'getCartItemCount'])->name('/get-cartitem-count');
-    Route::post('/add-to-cart', [CartItemApiController::class, 'addToCart'])->name('add-to-cart');
+    Route::get('/get-cartitem-count', [CartItemApiController::class, 'getCartItemCount']);
+    Route::post('/add-to-cart', [CartItemApiController::class, 'addToCart']);
+    Route::post('/remove-cart', [CartItemApiController::class, 'removeFromCart']);
+    Route::post('/clear-cart', [CartItemApiController::class, 'clearCart']);
+    Route::post('/update-cart', [CartItemApiController::class, 'updateCartList']);
 
     Route::resource('/wishlists', WishListItemApiController::class);
     // Route::get('/get-wishlistitems', [WishListItemApiController::class, 'getWishlistitems'])->name('get-wishlistitems');

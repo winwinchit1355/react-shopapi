@@ -7,6 +7,7 @@ use App\Models\CartItem;
 use Illuminate\Http\Request;
 use App\Responses\ResponseFormat;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class CartItemApiController extends Controller
@@ -15,7 +16,8 @@ class CartItemApiController extends Controller
     public function index(Request $request)
     {
         $customer_id = auth()->guard('customer_api')->id();
-        $cartitems=CartItem::where('customer_id',$customer_id)->get();
+        $cartitems=CartItem::with(['product','product.category','product.metal','product.gemstone'])
+            ->where('customer_id',$customer_id)->get();
         return  $this->apiSuccessResponse($cartitems,'Successfully',200);
     }
     public function getCartItemCount(Request $request)
@@ -55,5 +57,28 @@ class CartItemApiController extends Controller
         $cartitems=CartItem::where('customer_id',$customer_id)->get();
         return  $this->apiSuccessResponse($cartitems,'Successfully add to cart',200);
 
+    }
+    public function removeFromCart(Request $request)
+    {
+        $cartitem = CartItem::where('uuid', $request->id)->delete();
+        return  $this->apiSuccessResponse($cartitem,'Successfully remove item',200);
+    }
+    public function clearCart()
+    {
+        $customer_id = Auth::guard('customer_api')->id();
+        $cartitem = CartItem::where('customer_id', $customer_id)->delete();
+        return  $this->apiSuccessResponse($cartitem,'Successfully remove all items',200);
+    }
+    public function updateCartList(Request $request)
+    {
+        if ($request->id == null) {
+            return $this->apiErrorResponse($request->id, 'No item!','No item!');
+        }
+        foreach ($request->id as $key => $id) {
+            $cartitem = CartItem::where('uuid', $id)->first();
+            $cartitem->quantity = $request->quantity[$key];
+            $cartitem->update();
+        }
+        return  $this->apiSuccessResponse($cartitem,'Successfully updated',200);
     }
 }

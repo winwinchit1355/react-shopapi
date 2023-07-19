@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Metal;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Gemstone;
 use App\Models\OrderItem;
 use App\Models\ProductImage;
 use App\Models\WishlistItem;
@@ -72,6 +74,14 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+    public function metal()
+    {
+        return $this->belongsTo(Metal::class);
+    }
+    public function gemstone()
+    {
+        return $this->belongsTo(Gemstone::class);
     }
     public function orderItems()
     {

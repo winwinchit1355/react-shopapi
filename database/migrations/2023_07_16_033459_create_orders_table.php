@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid')->unique();
+            $table->string('uuid',191)->unique();
             $table->foreignId('customer_id')->constrained('customers');
             // $table->foreignId('delivery_fee_id')->constrained('delivery_fees');
             $table->datetime('invoice_date')->nullable(); //customer ordered date

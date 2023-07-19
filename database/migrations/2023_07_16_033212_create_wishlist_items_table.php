@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('wishlist_items', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid')->unique();
+            $table->string('uuid',191)->unique();
             $table->foreignId('customer_id')->constrained('customers');
             $table->foreignId('product_id')->constrained('products');
             $table->timestamps();

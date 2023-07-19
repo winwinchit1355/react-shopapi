@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid')->unique();
+            $table->string('uuid',191)->unique();
             $table->binary('profile_image')->nullable();
             $table->string('name');
             $table->string('phone');

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('metals', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid')->unique();
+            $table->string('uuid',191)->unique();
             $table->string('name');
             $table->string('meta_keyword')->nullable();
             $table->text('meta_description')->nullable();

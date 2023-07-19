@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid')->unique();
+            $table->string('uuid',191)->unique();
             $table->foreignId('category_id')->nullable()->constrained('categories');
             $table->foreignId('metal_id')->nullable()->constrained('metals');
             $table->foreignId('gemstone_id')->nullable()->constrained('gemstones');

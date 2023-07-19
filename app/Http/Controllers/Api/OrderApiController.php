@@ -24,7 +24,7 @@ class OrderApiController extends Controller
     }
     public function index(Request $request)
     {
-        $orders=Order::select([
+        $orders=Order::with(['orderItems','orderItems.product'])->select([
             '*',
             DB::raw("DATE_FORMAT(invoice_date, '%M %d, %Y') AS invoiceDate"),
         ])->where('customer_id',$this->customer_id)->get();
